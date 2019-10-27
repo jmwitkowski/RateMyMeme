@@ -10,7 +10,7 @@ public class Meme {
     @SequenceGenerator(name = "memeSeq", sequenceName = "meme_seq", allocationSize = 1)
     private int idMeme;
 
-    @OneToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class)
     private User user;
 
     private String nameMeme;

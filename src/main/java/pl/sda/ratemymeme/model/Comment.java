@@ -10,10 +10,10 @@ public class Comment {
     @SequenceGenerator(name = "commentSeq", sequenceName = "comment_seq", allocationSize = 1)
     private int idComment;
 
-    @OneToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class)
     private User user;
 
-    @OneToOne(targetEntity = Meme.class)
+    @ManyToOne(targetEntity = Meme.class)
     private Meme meme;
 
     private String content;

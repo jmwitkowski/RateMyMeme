@@ -10,10 +10,10 @@ public class Vote {
     @SequenceGenerator(name = "voleSeq", sequenceName = "vote_seq", allocationSize = 1)
     private int idVote;
 
-    @OneToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class)
     private User user;
 
-    @OneToOne(targetEntity = Meme.class)
+    @ManyToOne(targetEntity = Meme.class)
     private Meme meme;
 
     private boolean voted;
