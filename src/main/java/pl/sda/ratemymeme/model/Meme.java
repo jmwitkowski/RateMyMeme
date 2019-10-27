@@ -1,9 +1,6 @@
 package pl.sda.ratemymeme.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -12,8 +9,10 @@ public class Meme {
     @GeneratedValue(generator = "memeSeq")
     @SequenceGenerator(name = "memeSeq", sequenceName = "meme_seq", allocationSize = 1)
     private int idMeme;
-    
+
+    @ManyToOne(targetEntity = User.class)
     private User user;
+
     private String nameMeme;
     private LocalDate dateUpload;
     private String sourceAdress;
