@@ -1,9 +1,6 @@
 package pl.sda.ratemymeme.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -13,9 +10,12 @@ public class Comment {
     @SequenceGenerator(name = "commentSeq", sequenceName = "comment_seq", allocationSize = 1)
     private int idComment;
 
+    @OneToOne(targetEntity = User.class)
     private User user;
 
+    @OneToOne(targetEntity = Meme.class)
     private Meme meme;
+
     private String content;
     private LocalDate uploadDate;
 }
