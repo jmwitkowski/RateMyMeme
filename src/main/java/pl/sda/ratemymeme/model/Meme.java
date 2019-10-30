@@ -20,6 +20,13 @@ public class Meme {
     private int receivedPluses;
     private int receivedMinuses;
 
+    public Meme(User user, String nameMeme, LocalDate dateUpload, String sourceAdress) {
+        this.user = user;
+        this.nameMeme = nameMeme;
+        this.dateUpload = dateUpload;
+        this.sourceAdress = sourceAdress;
+    }
+
     public int getId() {
         return id;
     }
