@@ -21,6 +21,16 @@ public class User {
 
     private LocalDate registrationDate;
 
+    public User(String login, String email, String password, LocalDate registrationDate) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.registrationDate = registrationDate;
+    }
+
+    public User() {
+    }
+
     public String getLogin() {
         return login;
     }

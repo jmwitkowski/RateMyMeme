@@ -1,15 +1,12 @@
 package pl.sda.ratemymeme.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.ratemymeme.model.Meme;
-import pl.sda.ratemymeme.model.User;
 import pl.sda.ratemymeme.service.MemeService;
 import pl.sda.ratemymeme.service.StorageService;
 
@@ -22,7 +19,6 @@ public class MemeController {
     @Autowired
     public MemeController(MemeService memeService, StorageService storageService) {
         this.memeService = memeService;
-
         this.storageService = storageService;
     }
 
