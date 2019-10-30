@@ -18,8 +18,8 @@ public class MemeService {
         this.memeRepository = memeRepository;
     }
 
-    public void addMemeToDataBase(User user, String memeName, String sourceAdress ) {
-        Meme memeToAdd = new Meme(user,memeName, LocalDate.now(),sourceAdress);
+    public void addMemeToDataBase(String memeName, String sourceAdress ) {
+        Meme memeToAdd = new Meme(memeName, LocalDate.now(),sourceAdress);
         memeRepository.save(memeToAdd);
     }
 }
