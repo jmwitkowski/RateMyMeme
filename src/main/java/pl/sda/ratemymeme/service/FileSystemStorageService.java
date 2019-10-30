@@ -36,6 +36,10 @@ public class FileSystemStorageService implements StorageService {
         this.rootLocation = relativePath.toAbsolutePath();
     }
 
+    public String getMemePath(MultipartFile file) {
+        return path + "/" + file.getOriginalFilename();
+    }
+
     @Override
     public void store(MultipartFile file) {
         File foldermem = new File("memebase");
@@ -65,6 +69,8 @@ public class FileSystemStorageService implements StorageService {
         catch (IOException e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
+
+
     }
 
     @Override

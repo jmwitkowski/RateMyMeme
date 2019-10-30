@@ -1,16 +1,18 @@
 package pl.sda.ratemymeme.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import pl.sda.ratemymeme.model.Meme;
+import pl.sda.ratemymeme.model.User;
 import pl.sda.ratemymeme.service.MemeService;
 import pl.sda.ratemymeme.service.StorageService;
+
 
 @Controller
 public class MemeController {
@@ -24,10 +26,15 @@ public class MemeController {
         this.storageService = storageService;
     }
 
-    @PostMapping(value = "/uploadmeme")
-    public ResponseEntity<?> addMeme(@RequestParam("file") MultipartFile file){
+    @PostMapping(value = "/uploadmeme", consumes = {MediaType.APPLICATION_OCTET_STREAM_VALUE, MediaType.ALL_VALUE})
+    public ResponseEntity<?> addMeme(@RequestPart("file") MultipartFile file, @RequestPart("memeName") String memeName) {
         storageService.store(file);
+        String pathOfFile = storageService.getMemePath(file);
+        memeService.addMemeToDataBase(memeName,pathOfFile);
         return ResponseEntity.ok("Meme added");
     }
 
+    @GetMapping(value = "/formMeme")
+    public ModelAndView getFormMemePage(){
+    return new ModelAndView("formMeme");}
 }

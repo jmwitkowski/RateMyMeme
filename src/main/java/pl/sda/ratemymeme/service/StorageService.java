@@ -20,4 +20,6 @@ public interface StorageService {
 
     void deleteAll();
 
+    String getMemePath(MultipartFile file);
+
 }
