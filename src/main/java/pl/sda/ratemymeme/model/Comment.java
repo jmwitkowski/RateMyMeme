@@ -10,7 +10,7 @@ public class Comment {
     @GeneratedValue(generator = "commentSeq")
     @SequenceGenerator(name = "commentSeq", sequenceName = "comment_seq", allocationSize = 1)
     private int id;
-
+    
     @ManyToOne(targetEntity = User.class)
     private User user;
 

@@ -38,6 +38,14 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void store(MultipartFile file) {
+        File foldermem = new File("memebase");
+        if(foldermem.exists()) {
+
+        } else {
+            foldermem.mkdir();
+        }
+
+
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
