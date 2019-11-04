@@ -1,11 +1,12 @@
 package pl.sda.ratemymeme.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-public class Meme {
+public class Meme  {
     @Id
     @GeneratedValue(generator = "memeSeq")
     @SequenceGenerator(name = "memeSeq", sequenceName = "meme_seq", allocationSize = 1)
@@ -19,6 +20,15 @@ public class Meme {
     private String sourceAdress;
     private int receivedPluses;
     private int receivedMinuses;
+
+    public Meme(String nameMeme, LocalDate dateUpload, String sourceAdress) {
+        this.nameMeme = nameMeme;
+        this.dateUpload = dateUpload;
+        this.sourceAdress = sourceAdress;
+    }
+
+    public Meme() {
+    }
 
     public int getId() {
         return id;
