@@ -26,6 +26,9 @@ public class Meme {
         this.sourceAdress = sourceAdress;
     }
 
+    public Meme() {
+    }
+
     public int getId() {
         return id;
     }
