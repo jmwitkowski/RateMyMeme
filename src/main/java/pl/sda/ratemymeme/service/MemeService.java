@@ -8,6 +8,7 @@ import pl.sda.ratemymeme.repository.MemeRepository;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class MemeService {
@@ -21,5 +22,10 @@ public class MemeService {
     public void addMemeToDataBase(String memeName, String sourceAdress ) {
         Meme memeToAdd = new Meme(memeName, LocalDate.now(),sourceAdress);
         memeRepository.save(memeToAdd);
+    }
+
+    public List<Meme> getAllMemes(){
+       List<Meme> allMemesList =  memeRepository.findAll();
+       return allMemesList;
     }
 }
