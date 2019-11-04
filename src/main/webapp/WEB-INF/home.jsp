@@ -5,24 +5,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
-
 <html>
 <head>
-    <title>Formularz</title>
+    <title>HomePage</title>
 </head>
 <body>
-<% out.print("Formularz dodawania mema"); %>
 
-<form method="post" action="/tu podac" enctype="multipart/form-data">
-    <input type="text"  name="login" placeholder="Nazwa" title="Please, enter valid email adress"/>
-    <input type="password" name="password"  placeholder="Haslo" title="Please, enter password"/>
-    <input type="submit"  value="Zaloguj" title="Login"/>
-</form>
+<c:forEach var="m" items="${memes}">
 
-<table>
+    ${m.nameMeme}<br>
+    ${m.dateUpload}<br>
 
-    ${uzytkownik.login}
+    <img src="${m.sourceAdress}"><br>
+
+</c:forEach>
+
+
+
 
 </body>
 </html>

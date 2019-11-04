@@ -35,14 +35,13 @@ public class FileSystemStorageService implements StorageService {
         Path relativePath = Paths.get(location);
         this.rootLocation = relativePath.toAbsolutePath();
     }
-
     public String getMemePath(MultipartFile file) {
-        return path + "/" + file.getOriginalFilename();
+        return "memebase" + "/" + file.getOriginalFilename();
     }
 
     @Override
     public void store(MultipartFile file) {
-        File foldermem = new File("memebase");
+        File foldermem = new File("src/main/webapp/memebase");
         if(foldermem.exists()) {
 
         } else {
