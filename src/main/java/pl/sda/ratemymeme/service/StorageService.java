@@ -22,6 +22,4 @@ public interface StorageService {
 
     String getMemePath(MultipartFile file);
 
-    String getRootLocat();
-
 }

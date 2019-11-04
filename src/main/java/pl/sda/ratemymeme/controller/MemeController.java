@@ -1,18 +1,14 @@
 package pl.sda.ratemymeme.controller;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.ratemymeme.service.MemeService;
 import pl.sda.ratemymeme.service.StorageService;
-import sun.nio.ch.IOUtil;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 
 @Controller
@@ -36,14 +32,5 @@ public class MemeController {
 
     @GetMapping(value = "/formMeme")
     public ModelAndView getFormMemePage(){
-        return new ModelAndView("formMeme");
-    }
-
-    @GetMapping(value = "/show")
-    public String showLocation() {
-        return storageService.getRootLocat();
-    }
-
-
-
+    return new ModelAndView("formMeme");}
 }

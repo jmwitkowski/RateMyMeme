@@ -36,12 +36,6 @@ public class FileSystemStorageService implements StorageService {
         this.rootLocation = relativePath.toAbsolutePath();
     }
 
-    public String getRootLocat() {
-
-        return String.valueOf(rootLocation);
-
-    }
-
     public String getMemePath(MultipartFile file) {
         return path + "/" + file.getOriginalFilename();
     }
@@ -76,7 +70,7 @@ public class FileSystemStorageService implements StorageService {
             throw new StorageException("Failed to store file " + filename, e);
         }
 
-        System.out.println(filename);
+
     }
 
     @Override

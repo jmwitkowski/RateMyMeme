@@ -6,8 +6,6 @@ import pl.sda.ratemymeme.model.User;
 import pl.sda.ratemymeme.repository.UserRepository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class UserService {
@@ -23,6 +21,4 @@ public class UserService {
         User newUser = new User(login,email,password, LocalDate.now());
         userRepository.save(newUser);
     }
-
-
 }
