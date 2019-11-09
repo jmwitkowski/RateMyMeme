@@ -42,9 +42,7 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public void store(MultipartFile file) {
         File foldermem = new File("src/main/webapp/memebase");
-        if(foldermem.exists()) {
-
-        } else {
+        if(!foldermem.exists()) {
             foldermem.mkdir();
         }
 
