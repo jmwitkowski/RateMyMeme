@@ -2,6 +2,8 @@ package pl.sda.ratemymeme.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
@@ -15,12 +17,12 @@ public class Meme {
     private User user;
 
     private String nameMeme;
-    private LocalDate dateUpload;
+    private LocalDateTime dateUpload;
     private String sourceAdress;
     private int receivedPluses;
     private int receivedMinuses;
 
-    public Meme(String nameMeme, LocalDate dateUpload, String sourceAdress) {
+    public Meme(String nameMeme, LocalDateTime dateUpload, String sourceAdress) {
         this.nameMeme = nameMeme;
         this.dateUpload = dateUpload;
         this.sourceAdress = sourceAdress;
@@ -53,11 +55,11 @@ public class Meme {
         this.nameMeme = nameMeme;
     }
 
-    public LocalDate getDateUpload() {
+    public LocalDateTime getDateUpload() {
         return dateUpload;
     }
 
-    public void setDateUpload(LocalDate dateUpload) {
+    public void setDateUpload(LocalDateTime dateUpload) {
         this.dateUpload = dateUpload;
     }
 
@@ -97,4 +99,6 @@ public class Meme {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }

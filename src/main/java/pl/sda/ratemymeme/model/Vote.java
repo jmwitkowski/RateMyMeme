@@ -8,7 +8,7 @@ public class Vote {
 
     @Id
     @GeneratedValue(generator = "voteSeq")
-    @SequenceGenerator(name = "voleSeq", sequenceName = "vote_seq", allocationSize = 1)
+    @SequenceGenerator(name = "voteSeq", sequenceName = "vote_seq", allocationSize = 1)
     private int id;
 
     @ManyToOne(targetEntity = User.class)
