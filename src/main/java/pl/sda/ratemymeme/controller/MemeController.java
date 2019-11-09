@@ -23,11 +23,13 @@ public class MemeController {
     }
 
     @PostMapping(value = "/uploadmeme", consumes = {MediaType.APPLICATION_OCTET_STREAM_VALUE, MediaType.ALL_VALUE})
-    public ResponseEntity<?> addMeme(@RequestPart("file") MultipartFile file, @RequestPart("memeName") String memeName) {
+    public ModelAndView addMeme(@RequestPart("file") MultipartFile file, @RequestPart("memeName") String memeName) {
         storageService.store(file);
         String pathOfFile = storageService.getMemePath(file);
         memeService.addMemeToDataBase(memeName,pathOfFile);
-        return ResponseEntity.ok("Meme added");
+        ModelAndView modelAndView = new ModelAndView("good");
+        modelAndView.addObject("message", "Meme added :) ");
+        return modelAndView;
     }
 
     @GetMapping(value = "/formMeme")

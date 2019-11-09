@@ -41,11 +41,10 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void store(MultipartFile file) {
-        File foldermem = new File("src/main/webapp/memebase");
-        if(!foldermem.exists()) {
-            foldermem.mkdir();
+        File folderForMemeBase = new File("src/main/webapp/memebase");
+        if(!folderForMemeBase.exists()) {
+            folderForMemeBase.mkdir();
         }
-
 
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
