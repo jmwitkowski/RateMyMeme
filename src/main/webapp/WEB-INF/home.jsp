@@ -14,10 +14,10 @@
     <table>
         <tr>
             <td>User:</td>
-            <td><input class= type='text' name='login'></td>
+            <td><input class= type='text' name='login' required></td>
 
             <td>Password:</td>
-            <td><input type='password' name='password' /></td>
+            <td><input type='password' name='password' required></td>
 
             <td colspan='2'><input  name="submit" type="submit" value="submit" /></td>
         </tr>
