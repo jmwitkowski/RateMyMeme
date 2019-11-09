@@ -12,6 +12,7 @@ import pl.sda.ratemymeme.model.User;
 import pl.sda.ratemymeme.repository.UserRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,4 +49,10 @@ public class UserService implements UserDetailsService {
         Optional<User> byId = userRepository.findById(s);
         return byId.orElseThrow(() -> new UsernameNotFoundException("Could not find user with username " + s));
     }
+
+    public User findByLogin(String name) {
+        Optional<User> optUser = userRepository.findById(name);
+        return optUser.get();
+    }
+
 }

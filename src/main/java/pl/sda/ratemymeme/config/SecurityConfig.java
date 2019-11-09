@@ -28,8 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-//                .antMatchers("/admin").hasAuthority("ADMIN")
-//                .antMatchers("/super").hasAuthority("SUPER_USER")
+                .antMatchers("/formMeme").hasAuthority("USER")
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin().loginPage("/")
@@ -43,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login?logout");
+                .logoutSuccessUrl("/");
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
