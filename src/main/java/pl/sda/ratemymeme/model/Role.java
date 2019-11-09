@@ -1,17 +1,19 @@
 package pl.sda.ratemymeme.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Role {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(generator = "roleSeq")
     @SequenceGenerator(name = "roleSeq", sequenceName = "role_seq", allocationSize = 1)
     private int id;
 
-    private String RoleName;
+    private String roleName;
 
     public int getId() {
         return id;
@@ -22,11 +24,11 @@ public class Role {
     }
 
     public String getRoleName() {
-        return RoleName;
+        return roleName;
     }
 
     public void setRoleName(String roleName) {
-        RoleName = roleName;
+        this.roleName = roleName;
     }
 
     @Override
@@ -40,5 +42,10 @@ public class Role {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String getAuthority() {
+        return roleName;
     }
 }

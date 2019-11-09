@@ -10,6 +10,20 @@
     <title>HomePage</title>
 </head>
 <body>
+<form name='loginForm' action="<c:url value='/' />" method='POST'>
+    <table>
+        <tr>
+            <td>User:</td>
+            <td><input class= type='text' name='login'></td>
+
+            <td>Password:</td>
+            <td><input type='password' name='password' /></td>
+
+            <td colspan='2'><input  name="submit" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+
 <button class="register" onclick="location.href='/register'">Register</button>
 <button class="addMeme" onclick="location.href='/formMeme'">Add meme</button><br>
 
