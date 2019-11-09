@@ -10,21 +10,10 @@
     <title>HomePage</title>
 </head>
 <body>
-<button class="register" onclick="location.href='/register'">Register</button>
-<button class="addMeme" onclick="location.href='/formMeme'">Add meme</button><br>
 
+    ${errormessage}<br>
 
-<c:forEach var="m" items="${memes}">
-
-    ${m.nameMeme}<br>
-    ${m.dateUpload}<br>
-
-    <img src="${m.sourceAdress}"><br>
-
-</c:forEach>
-
-
-
-
+<button class="homepage" onclick="location.href='/'">Return to home page</button><br>
+<img src="somethingWentWrong.jpg">
 </body>
 </html>
