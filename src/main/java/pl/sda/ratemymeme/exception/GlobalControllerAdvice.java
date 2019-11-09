@@ -9,20 +9,38 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.time.LocalDate;
+
 @ControllerAdvice
 public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {StorageException.class})
-    protected ModelAndView handleStorageFailure(RuntimeException ex, WebRequest request) {
+    protected ModelAndView handleStorageFailure(StorageException ex) {
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("errormessage", ex.getMessage());
         return modelAndView;
     }
 
     @ExceptionHandler(value = {StorageFileNotFoundException.class})
-    protected ModelAndView handleFileNotFound(StorageException ex, WebRequest request) {
+    protected ModelAndView handleFileNotFound(StorageException ex) {
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("errormessage", ex.getMessage());
         return modelAndView;
     }
+
+    @ExceptionHandler(value = {EmailExistsException.class})
+    protected ModelAndView handleEmailExistInDataBase(EmailExistsException ex) {
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errormessage", ex.getMessage());
+        return modelAndView;
+    }
+
+    @ExceptionHandler(value = {LoginExistsException.class})
+    protected ModelAndView handleLoginExistInDataBase(LoginExistsException ex) {
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errormessage", ex.getMessage());
+        return modelAndView;
+    }
+
+
 }
