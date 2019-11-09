@@ -1,14 +1,19 @@
 package pl.sda.ratemymeme.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
     private String  login;
@@ -21,7 +26,7 @@ public class User {
 
     private LocalDate registrationDate;
 
-    public User(String login, String email, String password, LocalDate registrationDate) {
+    public User(String login, String email, String password, LocalDate registrationDate, Role role) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -37,10 +42,6 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
@@ -82,5 +83,39 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(login);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(role);
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
