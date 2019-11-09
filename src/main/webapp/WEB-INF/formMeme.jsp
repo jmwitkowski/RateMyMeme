@@ -10,8 +10,8 @@
 <% out.print("Formularz dodawania mema"); %>
 
 <form method="post" action="/uploadmeme" enctype="multipart/form-data">
-    Nazwa Mema: <input type="text" name="memeName"><br />
-    <input type="file" name="file"><br />
+    Nazwa Mema: <input type="text" name="memeName" required><br />
+    <input type="file" name="file" required><br />
     <input type="submit" value = "Dodaj!">
 </form>
 
