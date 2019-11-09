@@ -4,12 +4,16 @@
 <%--JSTL jest włączony--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 
 <html>
 <head>
     <title>HomePage</title>
 </head>
 <body>
+
+<security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
 <form name='loginForm' action="<c:url value='/' />" method='POST'>
     <table>
         <tr>
@@ -23,9 +27,17 @@
         </tr>
     </table>
 </form>
+Only logged users can add memes!
 
 <button class="register" onclick="location.href='/register'">Register</button>
-<button class="addMeme" onclick="location.href='/formMeme'">Add meme</button><br>
+</security:authorize><br>
+
+<security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
+    <button class="logout" onclick="location.href='/logout'">Logout</button><br>
+    Hi ${activeUserName}<br>
+    <button class="addMeme" onclick="location.href='/formMeme'">Add meme</button><br>
+</security:authorize><br>
+
 
 
 <c:forEach var="m" items="${memes}">
