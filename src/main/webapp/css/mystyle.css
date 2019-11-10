@@ -1,0 +1,28 @@
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    /*padding: 8px 16px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.submit {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    /*padding: 8px 16px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.comments {
+    width: 600px;
+    height: 34px;
+
+}
+

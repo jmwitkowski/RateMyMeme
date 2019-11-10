@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>HomePage</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
 
@@ -18,12 +19,12 @@
     <table>
         <tr>
             <td>User:</td>
-            <td><input class= type='text' name='login' required></td>
+            <td><input class="" type='text' name='login' required></td>
 
             <td>Password:</td>
             <td><input type='password' name='password' required></td>
 
-            <td colspan='2'><input  name="submit" type="submit" value="submit" /></td>
+            <td colspan='2'><input class="submit"  name="submit" type="submit" value="Sign In" /></td>
         </tr>
     </table>
 </form>
