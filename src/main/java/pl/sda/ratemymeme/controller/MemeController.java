@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import pl.sda.ratemymeme.model.Meme;
 import pl.sda.ratemymeme.service.MemeService;
 import pl.sda.ratemymeme.service.StorageService;
 
@@ -26,15 +27,23 @@ public class MemeController {
     public ModelAndView addMeme(@RequestPart("file") MultipartFile file, @RequestPart("memeName") String memeName) {
         storageService.store(file);
         String pathOfFile = storageService.getMemePath(file);
-        memeService.addMemeToDataBase(memeName,pathOfFile);
+        memeService.addMemeToDataBase(memeName, pathOfFile);
         ModelAndView modelAndView = new ModelAndView("good");
         modelAndView.addObject("message", "Meme added :) ");
         return modelAndView;
     }
 
     @GetMapping(value = "/formMeme")
-    public ModelAndView getFormMemePage(){
-    return new ModelAndView("formMeme");}
+    public ModelAndView getFormMemePage() {
+        return new ModelAndView("formMeme");
+    }
 
 
+    @GetMapping(value = "/meme{id}")
+    public ModelAndView getSingleMemePage(@PathVariable int id) {
+        Meme meme = memeService.getMemeById(id);
+        ModelAndView modelAndView = new ModelAndView("meme");
+        modelAndView.addObject("meme", meme);
+        return modelAndView;
+    }
 }

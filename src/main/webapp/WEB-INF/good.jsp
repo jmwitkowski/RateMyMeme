@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>HomePage</title>
+    <title>RateMyMeme</title>
 </head>
 <body>
 

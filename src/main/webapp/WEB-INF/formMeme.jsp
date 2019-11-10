@@ -4,15 +4,15 @@
 <%@ page session="false"%>
 <html>
 <head>
-    <title>Formularz</title>
+    <title>RateMyMeme</title>
 </head>
 <body>
-<% out.print("Formularz dodawania mema"); %>
+<% out.print("Adding meme form"); %>
 
 <form method="post" action="/uploadmeme" enctype="multipart/form-data">
     Nazwa Mema: <input type="text" name="memeName" required><br />
     <input type="file" name="file" required><br />
-    <input type="submit" value = "Dodaj!">
+    <input type="submit" value = "Add!">
 </form>
 
 </body>

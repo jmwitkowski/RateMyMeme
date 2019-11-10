@@ -40,4 +40,9 @@ public class MemeService {
 
         return allMemesList;
     }
+
+    public Meme getMemeById(int id) {
+        Optional<Meme> optMeme = memeRepository.findById(id);
+        return optMeme.get();//ToDo obsługa suytacji gdy nie znajdzie mema
+    }
 }
