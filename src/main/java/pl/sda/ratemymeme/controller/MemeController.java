@@ -2,12 +2,14 @@ package pl.sda.ratemymeme.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import pl.sda.ratemymeme.exception.MemeNotFoundException;
 import pl.sda.ratemymeme.model.Meme;
+import pl.sda.ratemymeme.service.CommentService;
 import pl.sda.ratemymeme.service.MemeService;
 import pl.sda.ratemymeme.service.StorageService;
 
@@ -16,11 +18,13 @@ import pl.sda.ratemymeme.service.StorageService;
 public class MemeController {
     private final MemeService memeService;
     private final StorageService storageService;
+    private final CommentService commentService;
 
     @Autowired
-    public MemeController(MemeService memeService, StorageService storageService) {
+    public MemeController(MemeService memeService, StorageService storageService, CommentService commentService) {
         this.memeService = memeService;
         this.storageService = storageService;
+        this.commentService = commentService;
     }
 
     @PostMapping(value = "/uploadmeme", consumes = {MediaType.APPLICATION_OCTET_STREAM_VALUE, MediaType.ALL_VALUE})
@@ -40,10 +44,12 @@ public class MemeController {
 
 
     @GetMapping(value = "/meme/{id}")
-    public ModelAndView getSingleMemePage(@PathVariable int id) {
+    public ModelAndView getSingleMemePage(@PathVariable int id) throws MemeNotFoundException {
         Meme meme = memeService.getMemeById(id);
         ModelAndView modelAndView = new ModelAndView("meme");
         modelAndView.addObject("meme", meme);
+        modelAndView.addObject("activeUserName", SecurityContextHolder.getContext().getAuthentication().getName());
+        modelAndView.addObject("listOfComments", commentService.getAllCommentForMeme(id));
         return modelAndView;
     }
 }

@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/formMeme").hasAuthority("USER")
                 .antMatchers("/**").permitAll()
+                .antMatchers("/addComment/**").hasAuthority("USER")
                 .and()
                 .formLogin().loginPage("/")
                 .usernameParameter("login")

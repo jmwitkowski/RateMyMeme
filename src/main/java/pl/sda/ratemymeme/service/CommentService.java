@@ -9,6 +9,7 @@ import pl.sda.ratemymeme.repository.CommentRepository;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 public class CommentService {
@@ -27,8 +28,11 @@ public class CommentService {
     public void addComment(int memeID, String content) {
         User activeUser = userService.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
         Meme meme = memeService.getMemeById(memeID);
-        String parsedContent = content.substring(8);
-        Comment comment = new Comment(activeUser,meme,parsedContent, LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        Comment comment = new Comment(activeUser,meme,content, LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         commentRepository.save(comment);
+    }
+
+    public List<Comment> getAllCommentForMeme(int memeId){
+        return commentRepository.findAllByMeme_Id(memeId);
     }
 }
