@@ -1,9 +1,7 @@
 package pl.sda.ratemymeme.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
