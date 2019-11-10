@@ -39,7 +39,7 @@ public class MemeController {
     }
 
 
-    @GetMapping(value = "/meme{id}")
+    @GetMapping(value = "/meme/{id}")
     public ModelAndView getSingleMemePage(@PathVariable int id) {
         Meme meme = memeService.getMemeById(id);
         ModelAndView modelAndView = new ModelAndView("meme");

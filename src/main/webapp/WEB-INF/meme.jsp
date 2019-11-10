@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>RateMyMeme</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
 
@@ -49,9 +50,15 @@
         ${meme.nameMeme}
         ${meme.dateUpload.toString().replace("T", " ")}
         <br>
-        <img src="${meme.sourceAdress}" width="600" height=""><br>
+        <img src="../${meme.sourceAdress}" width="600" height=""><br>
         </a>
     </p>
+
+    <form action="/addComment/${meme.id}" method="post" name='addComment'>
+        <input type="text" name="content" placeholder="Comment meme" maxlength="300" /> <br />
+        <input type="submit" value="Comment">
+    </form>
+
 </div>
 
 
