@@ -9,7 +9,7 @@
 
 <html>
 <head>
-    <title>HomePage</title>
+    <title>RateMyMeme</title>
 </head>
 <body>
 
@@ -41,12 +41,15 @@ Only logged users can add memes!
 
 
 <c:forEach var="m" items="${memes}">
-
-    ${m.nameMeme}<br>
-    ${m.dateUpload}<br>
-
-    <img src="${m.sourceAdress}"><br>
-
+<div align="center">
+    <a href="/meme${m.id}">${m.nameMeme}</a><br>
+    ${m.dateUpload.toString().replace("T", " ")}<br>
+    <p>
+        <a href="/meme${m.id}">
+        <img src="${m.sourceAdress}" width="600" height=""><br>
+    </a>
+    </p>
+</div>
 </c:forEach>
 
 

@@ -48,11 +48,11 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Optional<User> byId = userRepository.findById(s);
         return byId.orElseThrow(() -> new UsernameNotFoundException("Could not find user with username " + s));
-    }
+    }//ToDo obsługa usernotfound exception
 
     public User findByLogin(String name) {
         Optional<User> optUser = userRepository.findById(name);
-        return optUser.get();
+        return optUser.get(); //ToDo obsługa suytacji gdy nie znajdzi usera
     }
 
 }
