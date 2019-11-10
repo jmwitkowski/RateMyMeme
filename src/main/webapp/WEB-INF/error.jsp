@@ -15,6 +15,6 @@
     ${errormessage}<br>
 
 <button class="homepage" onclick="location.href='/'">Return to home page</button><br>
-<img src="somethingWentWrong.jpg">
+<img src="../somethingWentWrong.jpg">
 </body>
 </html>
