@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.ratemymeme.exception.EmailExistsException;
+import pl.sda.ratemymeme.exception.LoginExistsException;
 import pl.sda.ratemymeme.service.RoleService;
 import pl.sda.ratemymeme.service.UserService;
 
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/addnewuser", consumes = MediaType.ALL_VALUE)
-    public ModelAndView addUser(@RequestPart("login") String login, @RequestPart("email") String email, @RequestPart("password") String password) throws EmailExistsException {
+    public ModelAndView addUser(@RequestPart("login") String login, @RequestPart("email") String email, @RequestPart("password") String password) throws EmailExistsException, LoginExistsException {
         String hashedPassword = passwordEncoder.encode(password);
         userService.addUserToDataBase(login,email,hashedPassword, roleService.getRoleById(1));
         ModelAndView modelAndView = new ModelAndView("good");

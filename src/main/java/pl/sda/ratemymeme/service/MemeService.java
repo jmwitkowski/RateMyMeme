@@ -4,6 +4,7 @@ package pl.sda.ratemymeme.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import pl.sda.ratemymeme.exception.MemeNotFoundException;
 import pl.sda.ratemymeme.model.Meme;
 import pl.sda.ratemymeme.model.User;
 import pl.sda.ratemymeme.repository.MemeRepository;
@@ -41,8 +42,11 @@ public class MemeService {
         return allMemesList;
     }
 
-    public Meme getMemeById(int id) {
+    public Meme getMemeById(int id) throws MemeNotFoundException{
         Optional<Meme> optMeme = memeRepository.findById(id);
-        return optMeme.get();//ToDo obsługa suytacji gdy nie znajdzie mema
+        if(!optMeme.isPresent()){
+            throw new MemeNotFoundException("Could not find meme with id: " + id);
+        }
+        return optMeme.get();
     }
 }

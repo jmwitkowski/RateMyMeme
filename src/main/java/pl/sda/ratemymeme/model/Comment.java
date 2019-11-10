@@ -28,6 +28,9 @@ public class Comment {
         this.uploadDate = uploadDate;
     }
 
+    public Comment() {
+    }
+
     public int getId() {
         return id;
     }

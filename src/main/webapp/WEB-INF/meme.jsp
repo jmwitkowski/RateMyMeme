@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>RateMyMeme</title>
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
 
@@ -53,13 +52,25 @@
         <img src="../${meme.sourceAdress}" width="600" height=""><br>
         </a>
     </p>
-
+    <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
     <form action="/addComment/${meme.id}" method="post" name='addComment'>
         <input type="text" name="content" placeholder="Comment meme" maxlength="300" /> <br />
         <input type="submit" value="Comment">
     </form>
+    </security:authorize><br>
+    <security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
+        You need to log in to comment
+    </security:authorize><br>
 
+    <c:forEach var="comment" items="${listOfComments}">
+        ${comment.user.getLogin()}
+        ${comment.uploadDate.toString().replace("T", " ")}<br />
+        ${comment.content}<br />
+    </c:forEach>
 </div>
+
+
+
 
 
 </body>
