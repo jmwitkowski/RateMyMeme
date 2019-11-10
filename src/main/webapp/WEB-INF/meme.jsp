@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>RateMyMeme</title>
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 </head>
 <body>
 
@@ -24,7 +24,7 @@
                 <td>Password:</td>
                 <td><input type='password' name='password' required></td>
 
-                <td colspan='2'><input name="submit" type="submit" value="submit"/></td>
+                <td colspan='2'><input class="submit" name="submit" type="submit" value="submit"/></td>
             </tr>
         </table>
     </form>
@@ -39,7 +39,7 @@
     <button class="logout" onclick="location.href='/logout'">Logout</button>
     <br>
     Hi ${activeUserName}<br>
-    <button class="addMeme" onclick="location.href='/formMeme'">Add meme</button>
+    <button class="submit" onclick="location.href='/formMeme'" >Add meme</button>
     <br>
 </security:authorize><br>
 
@@ -55,8 +55,8 @@
     </p>
 
     <form action="/addComment/${meme.id}" method="post" name='addComment'>
-        <input type="text" name="content" placeholder="Comment meme" maxlength="300" /> <br />
-        <input type="submit" value="Comment">
+        <input class="comments" type="text" name="content" placeholder="Comment meme" maxlength="300" /> <br />
+        <input class="submit" type="submit" value="Comment">
     </form>
 
 </div>
