@@ -17,7 +17,11 @@ public class Vote {
     @ManyToOne(targetEntity = Meme.class)
     private Meme meme;
 
-    private boolean voted;
+
+    public Vote(User user, Meme meme) {
+        this.user = user;
+        this.meme = meme;
+    }
 
     public int getId() {
         return id;
@@ -43,12 +47,7 @@ public class Vote {
         this.meme = meme;
     }
 
-    public boolean isVoted() {
-        return voted;
-    }
-
-    public void setVoted(boolean voted) {
-        this.voted = voted;
+    public Vote() {
     }
 
     @Override
