@@ -8,13 +8,13 @@
 <html>
 <head>
     <title>RateMyMeme</title>
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 </head>
 <body>
 
     ${message}<br>
 
 <button class="homepage" onclick="location.href='/'">Return to home page</button><br>
-    <img src="success.jpg">
+    <img src="../success.jpg" width="600" height="">
 </body>
 </html>

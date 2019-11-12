@@ -5,7 +5,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <head>
     <title>RateMyMeme</title>
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 </head>
 <body>
 
