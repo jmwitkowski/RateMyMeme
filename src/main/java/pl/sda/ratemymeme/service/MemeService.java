@@ -56,4 +56,11 @@ public class MemeService {
         return optMeme.get();
     }
 
+    public MemeWithVotes getMemeWithVote(Meme meme) {
+        return new MemeWithVotes(meme,voteService.getListOfUsersWhoVotedOnThisMeme(meme));
+    }
+
+    public void deleteMeme(Meme meme) {
+        memeRepository.deleteById(meme.getId());
+    }
 }

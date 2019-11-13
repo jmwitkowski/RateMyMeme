@@ -37,4 +37,13 @@ public class VoteService {
                 .collect(Collectors.toList());
         return listOfUserNamesWhoVoted;
     }
+
+    public void voteMinus(Meme meme) {
+        User userFrom = userService.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+        Vote vote = new Vote(userFrom,meme);
+        voteRepository.save(vote);
+        int actualResult = meme.getReceivedMinuses();
+        meme.setReceivedMinuses(actualResult + 1);
+        memeRepository.save(meme);
+    }
 }

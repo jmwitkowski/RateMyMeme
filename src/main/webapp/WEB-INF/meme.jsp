@@ -47,14 +47,20 @@
 <div align="center">
 
     <p>
-        ${meme.nameMeme}
-        ${meme.dateUpload.toString().replace("T", " ")}
+        ${memeWithVote.meme.nameMeme}
+        ${memeWithVote.meme.dateUpload.toString().replace("T", " ")}
         <br>
-        <img src="../${meme.sourceAdress}" width="600" height=""><br>
+        <img src="../${memeWithVote.meme.sourceAdress}" width="600" height=""><br>
         </a>
+            <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
+                <c:if test="${!memeWithVote.votingUsers.contains(activeUserName)}">
+                    <button type="button" name="like" onclick="location.href='/votePlus/${memeWithVote.meme.id}'">Like!</button>
+                    <button class="dislike" type="button" name="dislike" onclick="location.href='/voteMinus/${memeWithVote.meme.id}'">Dislike!</button>
+                </c:if>
+            </security:authorize><br>
     </p>
     <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
-    <form action="/addComment/${meme.id}" method="post" name='addComment'>
+    <form action="/addComment/${memeWithVote.meme.id}" method="post" name='addComment'>
         <input class="comments" type="text" name="content" placeholder="Comment meme" maxlength="300" /> <br />
         <input class="submit" type="submit" value="Comment">
     </form>
