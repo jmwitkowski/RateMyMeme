@@ -48,11 +48,23 @@
             ${m.meme.dateUpload.toString().replace("T", " ")}<br>
         <p>
             <a href="/meme/${m.meme.id}">
-                <img src="../${m.meme.sourceAdress}" width="600" height=""><br>
+                <img src="../${m.meme.sourceAdress}" width="600" height="">
             </a>
+            <security:authorize access="hasAnyAuthority('ADMIN')">
+                <button class="dislike" type="button" name="" onclick="location.href='/delete/${m.meme.id}'">Del</button>
+            </security:authorize><br>
+                Likes: ${m.meme.receivedPluses}
             <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
                 <c:if test="${!m.votingUsers.contains(activeUserName)}">
                     <button type="button" name="like" onclick="location.href='/votePlus/${m.meme.id}'">Like!</button>
+                </c:if>
+            </security:authorize>
+                Dislikes: ${m.meme.receivedMinuses}
+            <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
+                <c:if test="${!m.votingUsers.contains(activeUserName)}">
+                    <button class="dislike" type="button" name="dislike"
+                            onclick="location.href='/voteMinus/${m.meme.id}'">Dislike!
+                    </button>
                 </c:if>
             </security:authorize><br>
         </p>

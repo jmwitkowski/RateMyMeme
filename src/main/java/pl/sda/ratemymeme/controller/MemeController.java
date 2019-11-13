@@ -47,9 +47,16 @@ public class MemeController {
     public ModelAndView getSingleMemePage(@PathVariable int id) throws MemeNotFoundException {
         Meme meme = memeService.getMemeById(id);
         ModelAndView modelAndView = new ModelAndView("meme");
-        modelAndView.addObject("meme", meme);
+        modelAndView.addObject("memeWithVote", memeService.getMemeWithVote(meme));
         modelAndView.addObject("activeUserName", SecurityContextHolder.getContext().getAuthentication().getName());
         modelAndView.addObject("listOfComments", commentService.getAllCommentForMeme(id));
         return modelAndView;
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String deleteMemeFromWebsite(@PathVariable int id) {
+        Meme meme = memeService.getMemeById(id);
+        memeService.deleteMeme(meme);
+        return "redirect:/";
     }
 }

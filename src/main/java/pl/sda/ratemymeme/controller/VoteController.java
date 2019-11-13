@@ -24,4 +24,11 @@ public class VoteController {
         voteService.votePlus(meme);
         return "redirect:/";
     }
+
+    @GetMapping("/voteMinus/{memeId}")
+    public String voteMinus(@PathVariable int memeId) {
+        Meme meme = memeService.getMemeById(memeId);
+        voteService.voteMinus(meme);
+        return "redirect:/";
+    }
 }
