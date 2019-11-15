@@ -14,67 +14,92 @@
 </head>
 <body>
 
-<security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
-    <form name='loginForm' action="<c:url value='/' />" method='POST'>
-        <table>
-            <tr>
-                <td>User:</td>
-                <td><input class=type='text' name='login' required></td>
+<div class="sidebar"><a href="/"> <img src="../LOGO.png" height="100" align="right"> </a>
+    <div>
 
-                <td>Password:</td>
-                <td><input type='password' name='password' required></td>
+        <security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
+        <form name='loginForm' action="<c:url value='/' />" method='POST'>
+            <table>
+                <tr>
+                    <td>User:</td>
+                    <td><input class=type='text' name='login' required></td>
 
-                <td colspan='2'><input class="submit" name="submit" type="submit" value="submit"/></td>
-            </tr>
-        </table>
-    </form>
-    Only logged users can comment memes!
+                    <td>Password:</td>
+                    <td><input type='password' name='password' required></td>
 
-    <button class="register" onclick="location.href='/register'">Register</button>
-
-</security:authorize><br>
-<button class="homepage" onclick="location.href='/'">Return to home page</button>
-<br>
-<security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
-    <button class="logout" onclick="location.href='/logout'">Logout</button>
-    <br>
-    Hi ${activeUserName}<br>
-    <button class="submit" onclick="location.href='/formMeme'" >Add meme</button>
-    <br>
-</security:authorize><br>
+                    <td colspan='2'><input class="submit" name="submit" type="submit" value="submit"/></td>
+                </tr>
+            </table>
+        </form>
+        <button class="register" onclick="location.href='/register'">Register</button>
+        </security:authorize>
 
 
-<div align="center">
+        <button class="homepage" onclick="location.href='/'">Return to home page</button>
 
-    <p>
-        ${memeWithVote.meme.nameMeme}
-        ${memeWithVote.meme.dateUpload.toString().replace("T", " ")}
+        <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
+        <a>Hi ${activeUserName}<br></a>
+        <button class="logout" onclick="location.href='/logout'">Logout</button>
+
+        <button class="submit" onclick="location.href='/formMeme'">Add meme</button>
         <br>
-        <img src="../${memeWithVote.meme.sourceAdress}" width="600" height=""><br>
-        </a>
+        </security:authorize><br>
+
+
+        <div class="container">
+            <div class="memebar">
+                <div class="leftdiv"><a>${memeWithVote.meme.nameMeme}</a><br/>
+                    ${memeWithVote.meme.user.getLogin()}
+                </div>
+                <br/>
+                <div class="rightdiv"> ${memeWithVote.meme.dateUpload.toString().replace("T", " ")}</div>
+            </div>
+            <img src="../${memeWithVote.meme.sourceAdress}" width="600" height=""><br>
+            </a>
+            <security:authorize access="hasAnyAuthority('ADMIN')">
+                <button class="dislike" type="button" name="" onclick="location.href='/delete/${memeWithVote.meme.id}'">
+                    Del
+                </button>
+            </security:authorize><br>
+            <b>Likes: ${memeWithVote.meme.receivedPluses}</b>
             <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
                 <c:if test="${!memeWithVote.votingUsers.contains(activeUserName)}">
-                    <button type="button" name="like" onclick="location.href='/votePlus/${memeWithVote.meme.id}'">Like!</button>
-                    <button class="dislike" type="button" name="dislike" onclick="location.href='/voteMinus/${memeWithVote.meme.id}'">Dislike!</button>
+                    <button type="button" name="like" onclick="location.href='/votePlus/${memeWithVote.meme.id}'">Like!
+                    </button>
+                </c:if>
+            </security:authorize>
+            <b>Dislikes: ${memeWithVote.meme.receivedMinuses}</b>
+            <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
+                <c:if test="${!memeWithVote.votingUsers.contains(activeUserName)}">
+                    <button class="dislike" type="button" name="dislike"
+                            onclick="location.href='/voteMinus/${memeWithVote.meme.id}'">Dislike!
+                    </button>
                 </c:if>
             </security:authorize><br>
-    </p>
-    <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
-    <form action="/addComment/${memeWithVote.meme.id}" method="post" name='addComment'>
-        <input class="comments" type="text" name="content" placeholder="Comment meme" maxlength="300" /> <br />
-        <input class="submit" type="submit" value="Comment">
-    </form>
-    </security:authorize><br>
-    <security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
-        You need to log in to comment
-    </security:authorize><br>
 
-    <c:forEach var="comment" items="${listOfComments}">
-        ${comment.user.getLogin()}
-        ${comment.uploadDate.toString().replace("T", " ")}<br />
-        ${comment.content}<br />
-    </c:forEach>
-</div>
+            <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
+                <form action="/addComment/${memeWithVote.meme.id}" method="post" name='addComment'>
+                    <input class="comments" type="text" name="content" placeholder="Comment meme" maxlength="300"/>
+                    <br/>
+                    <input class="submit" type="submit" value="Comment">
+                </form>
+            </security:authorize><br>
+            <security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
+                Only logged users can comment memes!
+
+                <button class="register" onclick="location.href='/register'">Register</button>
+            </security:authorize><br>
+
+            <c:forEach var="comment" items="${listOfComments}">
+                <div class="memebar">
+                    <div class="leftdiv"><a>${comment.user.getLogin()}</a>
+                    <br/>
+                    <i><a class="dateComment">${comment.uploadDate.toString().replace("T", " ")}</a></i><br/></div>
+                    <div class="rightdiv"><a class="comment">${comment.content}</a><br/></div>
+                </div>
+                <br/>
+            </c:forEach>
+        </div>
 
 
 </body>
