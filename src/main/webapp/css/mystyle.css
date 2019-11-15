@@ -1,44 +1,105 @@
-button {
-    background-color: #4CAF50; /* Green */
-    /*border: none;*/
-    color: white;
-    /*padding: 8px 16px;*/
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+body {
+    background-color: #473a37;
+    color: beige;
+    font-family: Gill Sans, sans-serif;
 }
 
 .submit {
     background-color: #4CAF50; /* Green */
+    border: none;
     color: white;
-    /*padding: 8px 16px;*/
+    padding: 4px 8px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.6s;
+    cursor: pointer;
+    margin: 4px;
+}
+
+.submit:hover {
+    background-color: #4bc741;
+    color: black;
+
 }
 
 .comments {
     width: 600px;
     height: 34px;
     border-radius: 12px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-button.dislike {
-    background-color: firebrick; /* Green */
+
+.sidebar {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    border-top-width: 3px;
+    background-color: #3b3230;
+    position: absolute;
+}
+
+
+text {
     color: white;
-    /*padding: 8px 16px;*/
+}
+
+.container {
+    margin: 0 auto;
+    width: 600px;
+    padding: 22px;
+}
+
+.leftdiv {
+    float: left;
+}
+
+.rightdiv {
+    font-size: 12px;
+    float: right;
+}
+
+a {
+    font-size: 24px;
+    padding-top: 5px;
+    text-decoration: none;
+    color: #ffb300;
+}
+
+.memebar {
+    float: bottom;
+    background-color: #4a2b21;
+    height: 50px;
+}
+
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 4px 8px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    transition-duration: 0.6s;
+    cursor: pointer;
+    margin: 4px;
+}
+
+button:hover {
+    background-color: #4bc741;
+    color: black;
+}
+
+button.dislike {
+    background-color: #f44336;
+}
+.dateComment{
+    font-size: 10px;
+}
+.comment{
     font-size: 16px;
-    border-radius: 12px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
