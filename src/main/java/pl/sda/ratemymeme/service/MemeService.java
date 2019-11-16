@@ -31,33 +31,31 @@ public class MemeService {
         this.voteService = voteService;
     }
 
-    public void addMemeToDataBase(String memeName, String sourceAdress) {
+    public Meme addMemeToDataBase(String memeName, String sourceAdress) {
         User userFrom = userService.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
         Meme memeToAdd = new Meme(memeName, LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), sourceAdress);
         memeToAdd.setUser(userFrom);
-        memeRepository.save(memeToAdd);
+        return memeRepository.save(memeToAdd);
     }
 
     public List<MemeWithVotes> getAllMemes() {
-        List<MemeWithVotes> memeWithVotesList;
         List<Meme> allMemesList = memeRepository.findAll();
         Collections.sort(allMemesList, (Meme m1, Meme m2) -> m2.getDateUpload().compareTo(m1.getDateUpload()));
-        memeWithVotesList = allMemesList.stream()
+        return allMemesList.stream()
                 .map(memeFromList -> new MemeWithVotes(memeFromList, voteService.getListOfUsersWhoVotedOnThisMeme(memeFromList)))
                 .collect(Collectors.toList());
-        return memeWithVotesList;
     }
 
-    public Meme getMemeById(int id) throws MemeNotFoundException{
+    public Meme getMemeById(int id) throws MemeNotFoundException {
         Optional<Meme> optMeme = memeRepository.findById(id);
-        if(!optMeme.isPresent()){
+        if (!optMeme.isPresent()) {
             throw new MemeNotFoundException("Could not find meme with id: " + id);
         }
         return optMeme.get();
     }
 
     public MemeWithVotes getMemeWithVote(Meme meme) {
-        return new MemeWithVotes(meme,voteService.getListOfUsersWhoVotedOnThisMeme(meme));
+        return new MemeWithVotes(meme, voteService.getListOfUsersWhoVotedOnThisMeme(meme));
     }
 
     public void deleteMeme(Meme meme) {
