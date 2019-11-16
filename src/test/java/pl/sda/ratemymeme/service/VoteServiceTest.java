@@ -19,14 +19,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.mockito.Mockito.*;
 public class VoteServiceTest {
-    private Role roleUser = new Role("USER");
-    private Meme meme1 = new Meme("Meme1", LocalDateTime.now(), "memebase/kiedys-to-byli-programisci.jpg");
-    private User user1 = new User("User1", "user@gmail.com", "password", LocalDate.now(), roleUser);
-    private Vote vote1 = new Vote(user1,meme1);
-    private  VoteRepository voteRepositoryMock = mock(VoteRepository.class);
-    private UserService userServiceMock = mock(UserService.class);
-    private MemeRepository memeRepositoryMock = mock(MemeRepository.class);
-    private VoteService voteService = new VoteService(voteRepositoryMock, userServiceMock,memeRepositoryMock);
+    private final Role roleUser = new Role("USER");
+    private final Meme meme1 = new Meme("Meme1", LocalDateTime.now(), "memebase/kiedys-to-byli-programisci.jpg");
+    private final User user1 = new User("User1", "user@gmail.com", "password", LocalDate.now(), roleUser);
+    private final Vote vote1 = new Vote(user1,meme1);
+    private final VoteRepository voteRepositoryMock = mock(VoteRepository.class);
+    private final UserService userServiceMock = mock(UserService.class);
+    private final MemeRepository memeRepositoryMock = mock(MemeRepository.class);
+    private final VoteService voteService = new VoteService(voteRepositoryMock, userServiceMock,memeRepositoryMock);
 
     @BeforeEach
     public void init() {

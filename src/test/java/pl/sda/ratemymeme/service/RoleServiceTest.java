@@ -1,5 +1,6 @@
 package pl.sda.ratemymeme.service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.sda.ratemymeme.exception.RoleNotFoundException;
 import pl.sda.ratemymeme.model.Role;
@@ -12,10 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class RoleServiceTest {
-    private Role role = new Role("ADMIN");
-
-    private RoleRepository roleRepositoryMock = mock(RoleRepository.class);
-    private RoleService roleService = new RoleService(roleRepositoryMock);
+    private final Role role = new Role("ADMIN");
+    private final RoleRepository roleRepositoryMock = mock(RoleRepository.class);
+    private final RoleService roleService = new RoleService(roleRepositoryMock);
 
     @Test
     public void shouldGetRoleById() {
@@ -32,6 +32,6 @@ public class RoleServiceTest {
         //Given
         when(roleRepositoryMock.findById(1)).thenReturn(Optional.empty());
         //Then
-        assertThrows(RoleNotFoundException.class, () -> roleService.getRoleById(1));
+        Assertions.assertThrows(RoleNotFoundException.class, () -> roleService.getRoleById(1));
     }
 }
