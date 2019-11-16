@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class VoteService {
-   private final VoteRepository voteRepository;
-   private final UserService userService;
+    private final VoteRepository voteRepository;
+    private final UserService userService;
     private final MemeRepository memeRepository;
 
-    public VoteService(VoteRepository voteRepository, UserService userService,  MemeRepository memeRepository) {
+    public VoteService(VoteRepository voteRepository, UserService userService, MemeRepository memeRepository) {
         this.voteRepository = voteRepository;
         this.userService = userService;
         this.memeRepository = memeRepository;
@@ -28,10 +28,11 @@ public class VoteService {
         Vote vote = new Vote(userFrom, meme);
         voteRepository.save(vote);
         int actualResult = meme.getReceivedPluses();
-        meme.setReceivedPluses(actualResult+1);
+        meme.setReceivedPluses(actualResult + 1);
         memeRepository.save(meme);
     }
-    public List<String> getListOfUsersWhoVotedOnThisMeme(Meme meme){
+
+    public List<String> getListOfUsersWhoVotedOnThisMeme(Meme meme) {
         List<String> listOfUserNamesWhoVoted = voteRepository.findByMeme_Id(meme.getId()).stream()
                 .map(vote -> vote.getUser().getLogin())
                 .collect(Collectors.toList());
@@ -40,7 +41,7 @@ public class VoteService {
 
     public void voteMinus(Meme meme) {
         User userFrom = userService.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
-        Vote vote = new Vote(userFrom,meme);
+        Vote vote = new Vote(userFrom, meme);
         voteRepository.save(vote);
         int actualResult = meme.getReceivedMinuses();
         meme.setReceivedMinuses(actualResult + 1);

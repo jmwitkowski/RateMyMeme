@@ -31,6 +31,7 @@ public class AppController {
         return modelAndView;
     }
 
+
     @GetMapping("/accessDenied")
     public ModelAndView accesDeniedView(){
         ModelAndView modelAndView = new ModelAndView("error");

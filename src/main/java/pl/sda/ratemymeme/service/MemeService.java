@@ -58,7 +58,6 @@ public class MemeService {
         return new MemeWithVotes(meme, voteService.getListOfUsersWhoVotedOnThisMeme(meme));
     }
 
-    public void deleteMeme(Meme meme) {
-        memeRepository.deleteById(meme.getId());
+    public void deleteMeme(Meme meme) { memeRepository.deleteById(meme.getId());
     }
 }
