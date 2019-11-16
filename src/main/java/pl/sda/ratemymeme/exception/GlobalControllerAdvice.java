@@ -36,15 +36,22 @@ public class GlobalControllerAdvice {
         return modelAndView;
     }
 
-    @ExceptionHandler(value = { UsernameNotFoundException.class})
-    protected ModelAndView handleUserNotFoundException( UsernameNotFoundException ex) {
+    @ExceptionHandler(value = {UsernameNotFoundException.class})
+    protected ModelAndView handleUserNotFoundException(UsernameNotFoundException ex) {
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("errormessage", ex.getMessage());
         return modelAndView;
     }
 
-    @ExceptionHandler(value = { MemeNotFoundException.class})
-    protected ModelAndView handleMemeNotFoundException( MemeNotFoundException ex) {
+    @ExceptionHandler(value = {MemeNotFoundException.class})
+    protected ModelAndView handleMemeNotFoundException(MemeNotFoundException ex) {
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errormessage", ex.getMessage());
+        return modelAndView;
+    }
+
+    @ExceptionHandler(value = {RoleNotFoundException.class})
+    protected ModelAndView handleRoleNotFoundException(RoleNotFoundException ex) {
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("errormessage", ex.getMessage());
         return modelAndView;
