@@ -20,11 +20,11 @@ import static org.mockito.Mockito.when;
 
 class CommentServiceTest {
 
-    private Role roleUser = new Role("USER");
-    private User user1 = new User("user", "user@gmail.com", "password", LocalDate.now(), roleUser);
-    private Meme meme1 = new Meme("Meme1", LocalDateTime.now(), "memebase/kiedys-to-byli-programisci.jpg");
-    private Comment comment = new Comment(user1,meme1,"Kubus maly pysiu",LocalDateTime.now());
-    private Comment comment2 = new Comment(user1,meme1,"Second comment",LocalDateTime.now());
+    private final Role roleUser = new Role("USER");
+    private final User user1 = new User("user", "user@gmail.com", "password", LocalDate.now(), roleUser);
+    private final Meme meme1 = new Meme("Meme1", LocalDateTime.now(), "memebase/kiedys-to-byli-programisci.jpg");
+    private final Comment comment = new Comment(user1,meme1,"Kubus maly pysiu",LocalDateTime.now());
+    private final Comment comment2 = new Comment(user1,meme1,"Second comment",LocalDateTime.now());
 
         CommentRepository commentRepository = mock(CommentRepository.class);
         MemeService memeService = mock(MemeService.class);
@@ -40,11 +40,12 @@ class CommentServiceTest {
 
     @Test
     public void shouldAddCommentToDataBase() {
+        // given
         when(memeService.getMemeById(1)).thenReturn(meme1);
         when(commentRepository.save(comment)).thenReturn(comment);
-
+        // when
         Comment commentExpected = commentService.addComment(meme1.getId(), "Kubus maly pysiu");
-
+        // then
         assertThat(commentExpected).isEqualTo(comment);
     }
 

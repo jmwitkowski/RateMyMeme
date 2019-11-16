@@ -1,10 +1,9 @@
 package pl.sda.ratemymeme.service;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
+
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import pl.sda.ratemymeme.model.Role;
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -36,7 +34,6 @@ public class UserServiceTest {
 
     @Test
     public void shouldAddUserToDataBase() {
-        // given is upper
         // when
         User user1 = userService.addUserToDataBase(user.getLogin(), user.getEmail(), user.getPassword(), user.getRole());
         // then
@@ -54,9 +51,8 @@ public class UserServiceTest {
 
     @Test
     public void shouldNotFindAdminByLogin() {
-        // when
         // then
-        assertThrows(UsernameNotFoundException.class, () -> userService.findByLogin("adminlogin"));
+        Assertions.assertThrows(UsernameNotFoundException.class, () -> userService.findByLogin("adminlogin"));
     }
 
 }
