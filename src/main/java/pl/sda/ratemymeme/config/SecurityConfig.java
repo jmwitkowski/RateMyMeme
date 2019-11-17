@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/formMeme").hasAuthority("USER")
                 .antMatchers("/addComment/**").hasAuthority("USER")
+                .antMatchers("/addComment/**").hasAuthority("ADMIN")
                 .antMatchers("/deletememe/**").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/**").permitAll()

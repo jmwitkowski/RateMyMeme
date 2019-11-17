@@ -8,12 +8,13 @@
     <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 </head>
 <body>
+<div class="sidebar"><a href="/"> <img src="../LOGO.jpg" height="100" align="right"> </a> </div>
 
-<div class="container">
-    <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+<div class="containerregister">
+    <div class="nazwa" >
+        <div class="col-8 col-md-4 col-md-offset-4">
+            <div class="panel">
+                <div class="panelheading">
                     <h3 class="panel-title">Sign up to <b>RateMyMeme</b> <small>It's free!</small></h3>
                 </div>
                 <div class="panel-body">
@@ -45,7 +46,7 @@
 <%--                            </div>--%>
                         </div>
 
-                        <input type="submit" value="Register" class="btn btn-info btn-block">
+                        <input type="submit" value="Register" class="submit">
 
                     </form>
                 </div>

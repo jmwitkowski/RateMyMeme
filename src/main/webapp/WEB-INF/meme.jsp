@@ -54,13 +54,13 @@
                 <br/>
                 <div class="rightdiv"> ${memeWithVote.meme.dateUpload.toString().replace("T", " ")}</div>
             </div>
-            <img src="../${memeWithVote.meme.sourceAdress}" width="600" height=""><br>
+            <img src="../${memeWithVote.meme.sourceAdress}" width="700" height=""><br>
             </a>
             <security:authorize access="hasAnyAuthority('ADMIN')">
                 <button class="dislike" type="button" name="" onclick="location.href='/delete/${memeWithVote.meme.id}'">
                     Del
                 </button>
-            </security:authorize><br>
+            </security:authorize>
             <b>Likes: ${memeWithVote.meme.receivedPluses}</b>
             <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
                 <c:if test="${!memeWithVote.votingUsers.contains(activeUserName)}">
@@ -76,7 +76,7 @@
                     </button>
                 </c:if>
             </security:authorize><br>
-
+            <br />
             <security:authorize access="hasAnyAuthority('USER', 'ADMIN')">
                 <form action="/addComment/${memeWithVote.meme.id}" method="post" name='addComment'>
                     <input class="comments" type="text" name="content" placeholder="Comment meme" maxlength="300"/>
