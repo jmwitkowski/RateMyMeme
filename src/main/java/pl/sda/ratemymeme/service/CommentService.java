@@ -25,11 +25,11 @@ public class CommentService {
     }
 
 
-    public void addComment(int memeID, String content) {
+    public Comment addComment(int memeID, String content) {
         User activeUser = userService.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
         Meme meme = memeService.getMemeById(memeID);
         Comment comment = new Comment(activeUser,meme,content, LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
-        commentRepository.save(comment);
+        return commentRepository.save(comment);
     }
 
     public List<Comment> getAllCommentForMeme(int memeId){

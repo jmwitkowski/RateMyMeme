@@ -1,10 +1,13 @@
 package pl.sda.ratemymeme.service;
 
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import pl.sda.ratemymeme.exception.IndexOutOfListOfeMemesException;
+import pl.sda.ratemymeme.exception.RoleNotFoundException;
 import pl.sda.ratemymeme.model.Meme;
 import pl.sda.ratemymeme.model.MemeWithVotes;
 import pl.sda.ratemymeme.model.Role;
@@ -33,7 +36,7 @@ public class MemeServiceTest {
     private VoteService voteServiceMock = mock(VoteService.class);
 
 
-    private MemeService memeService = new MemeService(memeRepositoryMock, userServiceMock, voteServiceMock);
+    private MemeService memeService = new MemeService(memeRepositoryMock, userServiceMock, voteServiceMock, 3);
 
     @BeforeEach
     public void init() {
@@ -94,6 +97,30 @@ public class MemeServiceTest {
         memeService.deleteMeme(meme2);
         //then
         verify(memeRepositoryMock, times(1)).deleteById(meme2.getId());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenIndexOutOfList(){
+        //Given
+        List<Meme> listOfMeme = new ArrayList<>();
+        listOfMeme.add(meme1);
+        listOfMeme.add(meme2);
+        listOfMeme.add(meme3);
+        when(memeRepositoryMock.findAll()).thenReturn(listOfMeme);
+
+        List<String> meme1UserWhiVotes = new ArrayList<>();
+        meme1UserWhiVotes.add(user1.getUsername());
+        when(voteServiceMock.getListOfUsersWhoVotedOnThisMeme(meme1)).thenReturn(meme1UserWhiVotes);
+        List<String> meme2UserWhiVotes = new ArrayList<>();
+        meme1UserWhiVotes.add(user1.getUsername());
+        when(voteServiceMock.getListOfUsersWhoVotedOnThisMeme(meme2)).thenReturn(meme2UserWhiVotes);
+        List<String> meme3UserWhiVotes = new ArrayList<>();
+        meme1UserWhiVotes.add(user1.getUsername());
+        when(voteServiceMock.getListOfUsersWhoVotedOnThisMeme(meme3)).thenReturn(meme3UserWhiVotes);
+
+        //when
+        //then
+        Assertions.assertThrows(IndexOutOfListOfeMemesException.class, () ->  memeService.getAllMemesPaginated(4));
     }
 
 

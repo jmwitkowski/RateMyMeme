@@ -25,7 +25,7 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public void addUserToDataBase(String login, String email, String password, Role role) throws RuntimeException {
+    public User addUserToDataBase(String login, String email, String password, Role role) throws RuntimeException {
 
         if (userRepository.findAll().stream()
                 .anyMatch(user -> user.getLogin().equals(login)))
@@ -41,7 +41,8 @@ public class UserService implements UserDetailsService {
 
         User newUser = new User(login, email, password, LocalDate.now(), role);
         newUser.setRole(role);
-        userRepository.save(newUser);
+        return userRepository.save(newUser);
+
     }
 
     @Override
