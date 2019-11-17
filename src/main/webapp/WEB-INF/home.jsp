@@ -9,7 +9,7 @@
 
 <html>
 <head>
-    <title>HomePage</title>
+    <title>Rate My Meme</title>
     <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 </head>
 <body>
@@ -41,7 +41,7 @@
     <a>Hi ${activeUserName}<br></a>
     <button class="logout" onclick="location.href='/logout'">Logout</button>
 
-    <button class="addMeme" onclick="location.href='/formMeme'">Add meme</button>
+    <button class="" onclick="location.href='/formMeme'">Add meme</button>
     <br>
     </security:authorize><br>
 
@@ -58,7 +58,7 @@
         </div>
         <div>
             <a href="/meme/${m.meme.id}">
-                <img src="../${m.meme.sourceAdress}" width="600" height="">
+                <img src="../${m.meme.sourceAdress}" width="700" height="">
             </a>
             <security:authorize access="hasAnyAuthority('ADMIN')">
                 <button class="dislike" type="button" name="" onclick="location.href='/delete/${m.meme.id}'">Del

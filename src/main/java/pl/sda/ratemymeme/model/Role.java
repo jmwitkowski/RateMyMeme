@@ -22,6 +22,7 @@ public class Role implements GrantedAuthority {
         this.roleName = roleName;
     }
 
+
     public int getId() {
         return id;
     }
