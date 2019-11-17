@@ -103,3 +103,29 @@ button.dislike {
     font-size: 16px;
 }
 
+/*.pagin{word-spacing : 10px}*/
+
+.containrepagin{
+    margin: 0 auto;
+    width: 600px;
+    padding: 22px;
+}
+
+/*.leftdivpag {*/
+/*    float: left;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.rightdivpag {*/
+/*    float: right;*/
+/*    text-align: center;*/
+/*}*/
+
+button.pagin {
+    background-color: #f44336;
+    font-size: 24px;
+    padding: 6px;
+    width: 120px;
+}
+button.pagin:hover{
+}

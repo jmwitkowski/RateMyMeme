@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.ratemymeme.model.MemeWithVotes;
 import pl.sda.ratemymeme.service.FileSystemStorageService;
 import pl.sda.ratemymeme.service.MemeService;
 import pl.sda.ratemymeme.service.VoteService;
@@ -26,9 +26,26 @@ public class AppController {
     @GetMapping("/")
     public ModelAndView homeView() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("memes", memeService.getAllMemes());
+        modelAndView.addObject("memes", memeService.getAllMemesPaginated(1));
         modelAndView.addObject("activeUserName", SecurityContextHolder.getContext().getAuthentication().getName());
+        modelAndView.addObject("pageindex",1);
+        modelAndView.addObject("islastpage",memeService.isLastPage(1));
         return modelAndView;
+    }
+    //Pagination
+    @GetMapping("/page/{page}")
+    public ModelAndView nextPageView(@PathVariable int page) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("memes", memeService.getAllMemesPaginated(page));
+        modelAndView.addObject("activeUserName", SecurityContextHolder.getContext().getAuthentication().getName());
+        modelAndView.addObject("pageindex",page);
+        modelAndView.addObject("islastpage",memeService.isLastPage(page));
+        return modelAndView;
+    }
+
+    @GetMapping("/page/1")
+    public String redirectPageOneToHomePage(){
+        return "redirect:/";
     }
 
 

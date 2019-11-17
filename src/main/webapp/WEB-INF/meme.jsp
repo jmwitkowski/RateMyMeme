@@ -15,7 +15,7 @@
 <body>
 
 <div class="sidebar"><a href="/"> <img src="../LOGO.png" height="100" align="right"> </a>
-    <div>
+
 
         <security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
         <form name='loginForm' action="<c:url value='/' />" method='POST'>
