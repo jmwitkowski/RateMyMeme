@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div class="sidebar"><a href="/"> <img src="../LOGO.png" height="100" align="right"> </a>
+<div class="sidebar"><a href="/"> <img src="../LOGO.jpg" height="100" align="right"> </a>
 
 
         <security:authorize access="!hasAnyAuthority('USER', 'ADMIN')">
